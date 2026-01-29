@@ -1,0 +1,16 @@
+{
+  "name": "@moltbot/polymarket",
+  "version": "2026.1.27-beta.1",
+  "type": "module",
+  "description": "Polymarket CLOB trading tool plugin (Gamma + CLOB APIs)",
+  "moltbot": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "dependencies": {
+    "@polymarket/clob-client": "^5.2.1",
+    "@sinclair/typebox": "0.34.47",
+    "ethers": "^5.8.0"
+  }
+}

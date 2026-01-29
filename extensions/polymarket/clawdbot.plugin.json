@@ -1,0 +1,90 @@
+{
+  "id": "polymarket",
+  "name": "Polymarket",
+  "description": "Polymarket CLOB trading tool (market lookup + orderbook + order placement with approvals).",
+  "skills": [
+    "./skills"
+  ],
+  "uiHints": {
+    "tradeEnabled": {
+      "label": "Enable Trading",
+      "help": "If false, the tool will only allow read-only actions."
+    },
+    "maxNotionalUsd": {
+      "label": "Max Order Notional (USD)",
+      "help": "Safety limit. Approx notional is price * size. Increase only if you understand the risk.",
+      "advanced": true
+    },
+    "allowedMarketSlugs": {
+      "label": "Allowed Market Slugs",
+      "help": "Optional safety allowlist. If set, orders are only allowed when the market slug matches one of these entries.",
+      "advanced": true
+    },
+    "signatureType": {
+      "label": "Signature Type",
+      "help": "0=EOA wallet, 1=POLY_PROXY (Polymarket account proxy), 2=GNOSIS_SAFE (proxy). See Polymarket docs.",
+      "advanced": true
+    },
+    "funderAddress": {
+      "label": "Funder Address",
+      "help": "EOA address (signatureType=0) or proxy wallet address (signatureType=1/2). If omitted for EOA, defaults to the signer address.",
+      "advanced": true
+    },
+    "privateKeyEnvVar": {
+      "label": "Private Key Env Var",
+      "help": "Env var name containing your EVM private key. Default POLYMARKET_PRIVATE_KEY. Never paste secrets into chat/tool params.",
+      "advanced": true,
+      "sensitive": true
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "clobHost": {
+        "type": "string",
+        "default": "https://clob.polymarket.com"
+      },
+      "gammaHost": {
+        "type": "string",
+        "default": "https://gamma-api.polymarket.com"
+      },
+      "chainId": {
+        "type": "integer",
+        "default": 137
+      },
+      "privateKeyEnvVar": {
+        "type": "string",
+        "default": "POLYMARKET_PRIVATE_KEY"
+      },
+      "signatureType": {
+        "type": "integer",
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "default": 0
+      },
+      "funderAddress": {
+        "type": "string"
+      },
+      "tradeEnabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "maxNotionalUsd": {
+        "type": "number",
+        "minimum": 0,
+        "default": 25
+      },
+      "allowedMarketSlugs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+
